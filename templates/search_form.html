@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Pet Adoption Predictor</title>
+</head>
+<body>
+    <form enctype="multipart/form-data" action="/search" method="post">
+        {% csrf_token %}
+        <label>Image</label> <br>
+        <input type="file" name="myfile" />
+        <br><br>
+
+        <label>Type</label> <br>
+        <select name="petType"> 
+        <option value="1">Dog</option> 
+        <option value="2">Cat</option> 
+        </select> <br><br>
+
+       	<label>Name</label> <br>
+        <input type="text" name="name"> <br><br>
+
+        <label>Age</label> <br>
+        <input type="text" name="age"> <br><br>
+
+        <label>Breed1, if applicable</label> <br>
+        <input type="text" name="breed1"> <br><br>
+
+        <label>Breed2, if applicable</label> <br>
+        <input type="text" name="breed2"> <br><br>
+
+        <label>Gender</label> <br>
+        <select name="gender"> 
+        <option value="1">Male</option> 
+        <option value="2">Femele</option> 
+        <option value="3">Mixed</option> 
+        </select> <br><br>
+
+       	<label>The major color of your pet</label> <br>
+    		<select name="color1"> 
+    		<option value="1">Black</option> 
+        <option value="2">Brown</option> 
+    		<option value="3">Golden</option> 
+        <option value="4">Yellow</option> 
+        <option value="5">Cream</option> 
+        <option value="6">Gray</option> 
+        <option value="7">White</option> 
+    		</select> <br><br>
+
+        <label>Color2, if applicable</label> <br>
+        <select name="color2"> 
+        <option value="0" selected>Not applicable</option>
+        <option value="1">Black</option> 
+        <option value="2">Brown</option> 
+        <option value="3">Golden</option> 
+        <option value="4">Yellow</option> 
+        <option value="5">Cream</option> 
+        <option value="6">Gray</option> 
+        <option value="7">White</option> 
+        </select> <br><br>
+
+        <label>Color3, if applicable</label> <br>
+        <select name="color3"> 
+        <option value="0" selected>Not applicable</option> 
+        <option value="1">Black</option> 
+        <option value="2">Brown</option> 
+        <option value="3">Golden</option> 
+        <option value="4">Yellow</option> 
+        <option value="5">Cream</option> 
+        <option value="6">Gray</option> 
+        <option value="7">White</option> 
+        </select> <br><br>
+
+        <label>Maturity Size</label> <br>
+        <select name="maturitySize"> 
+        <option value="0" selected>Not Specified</option> 
+        <option value="1">Small</option> 
+        <option value="2">Medium</option> 
+        <option value="3">Large</option> 
+        <option value="4">Extra Large</option> 
+        </select> <br><br>
+
+        <label>Fur Length</label> <br>
+        <select name="furLength"> 
+        <option value="0" selected>Not Specified</option> 
+        <option value="1">Short</option> 
+        <option value="2">Medium</option> 
+        <option value="3">Long</option> 
+        </select> <br><br>
+
+        <label>Vaccinated</label> <br>
+        <select name="vaccinated"> 
+        <option value="0" selected>Not Sure</option> 
+        <option value="1">Yes</option> 
+        <option value="2">No</option> 
+        </select> <br><br>
+
+        <label>Dewormed</label> <br>
+        <select name="dewormed"> 
+        <option value="0" selected>Not Sure</option> 
+        <option value="1">Yes</option> 
+        <option value="2">No</option> 
+        </select> <br><br>
+
+        <label>Sterilized</label> <br>
+        <select name="sterilized"> 
+        <option value="0" selected>Not Sure</option> 
+        <option value="1">Yes</option> 
+        <option value="2">No</option> 
+        </select> <br><br>
+
+        <label>Health Condition</label> <br>
+        <select name="health"> 
+        <option value="0" selected>Not Specified</option> 
+        <option value="1">Healthy</option> 
+        <option value="2">Minor Injury</option> 
+        <option value="3">Serious Injury</option>
+        </select> <br><br>
+
+        <label>Number of pets represented</label> <br>
+        <input type="text" name="quantity"> <br><br>
+
+        <label>Adoption fee, 0 for free</label> <br>
+        <input type="text" name="fee"> <br><br>
+
+        <label>State location in Malaysia</label> <br>
+        <select name="state"> 
+        <option value="41336">Johor</option> 
+        <option value="41325">Kedah</option> 
+        <option value="41367">Kelantan</option> 
+        <option value="41401">Kuala Lumpur</option>
+        <option value="41415">Labuan</option> 
+        <option value="41324">Melaka</option>          
+        <option value="41332">Negeri Sembilan</option> 
+        <option value="41335">Pahang</option>        
+        <option value="41330">Perak</option> 
+        <option value="41380">Perlis</option>          
+        <option value="41327">Pulau Pinang</option> 
+        <option value="41345">Sabah</option>          
+        <option value="41342">Sarawak</option> 
+        <option value="41326">Selangor</option>          
+        <option value="41361">Terengganu</option> 
+        </select> <br><br>
+
+        <label>Video Amount</label> <br>
+        <input type="text" name="videoAmt"> <br><br>
+
+        <label>Photo Amout</label> <br>
+        <input type="text" name="photoAmt"> <br><br>
+
+        <label>Description</label> <br>
+        <input type="text" name="description"> <br><br>
+
+        <input type="submit" value="Make A prediction"> <br><br>
+
+    </form>
+
+        <p>{{ rlt }}</p>
+
+</body>
+</html>
