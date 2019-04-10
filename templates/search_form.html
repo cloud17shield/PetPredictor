@@ -7,6 +7,12 @@
 <body>
     <form enctype="multipart/form-data" action="/search" method="post">
         {% csrf_token %}
+        
+        <label><input name="selection" type="radio" value="byImage" />predicted by image </label> 
+        <label><input name="selection" type="radio" value="byValues" checked/>predicted by values</label> 
+
+        <br><br><br>
+
         <label>Image</label> <br>
         <input type="file" name="myfile" />
         <br><br>
@@ -17,9 +23,9 @@
         <option value="2">Cat</option> 
         </select> <br><br>
 
-       	<label>Name</label> <br>
+<!--        	<label>Name</label> <br>
         <input type="text" name="name"> <br><br>
-
+ -->
         <label>Age</label> <br>
         <input type="text" name="age"> <br><br>
 
@@ -145,11 +151,11 @@
         <label>Video Amount</label> <br>
         <input type="text" name="videoAmt"> <br><br>
 
-        <label>Photo Amout</label> <br>
+        <label>Photo Amount</label> <br>
         <input type="text" name="photoAmt"> <br><br>
 
-        <label>Description</label> <br>
-        <input type="text" name="description"> <br><br>
+<!--         <label>Description</label> <br>
+        <input type="text" name="description"> <br><br> -->
 
         <input type="submit" value="Make A prediction"> <br><br>
 

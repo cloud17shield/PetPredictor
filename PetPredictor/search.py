@@ -26,31 +26,53 @@ def search(request):
 			# 	destination.write(chunk) 
 			# destination.close() 
 		else:
-			print ('no image uploaded')
+			message =  ('no image uploaded')
 
 		print ('hahahah')
 
 		#retrive attributes from front-end
 
 		petType = request.POST['petType']
-		name = request.POST['name']
-		age = request.POST['age']
-		gender = request.POST['gender']
-		color1 = request.POST['color1']
-		color2 = request.POST['color2']
-		color3 = request.POST['color3']
-		maturitySize = request.POST['maturitySize']
-		furLength = request.POST['furLength']
-		vaccinated = request.POST['vaccinated']
-		dewormed = request.POST['dewormed']
-		sterilized = request.POST['sterilized']
-		health = request.POST['health']
-		quantity = request.POST['quantity']
-		fee = request.POST['fee']
-		state = request.POST['state']
-		videoAmt = request.POST['videoAmt']
-		photoAmt = request.POST['photoAmt']	
-		description = request.POST['description']
+		# name = request.POST['name']
+
+		if request.POST['age']:
+			age = int(request.POST['age'])
+		else:
+			age = 0
+
+		gender = int(request.POST['gender'])
+		color1 = int(request.POST['color1'])
+		color2 = int(request.POST['color2'])
+		color3 = int(request.POST['color3'])
+		maturitySize = int(request.POST['maturitySize'])
+		furLength = int(request.POST['furLength'])
+		vaccinated = int(request.POST['vaccinated'])
+		dewormed = int(request.POST['dewormed'])
+		sterilized = int(request.POST['sterilized'])
+		health = int(request.POST['health'])
+
+		if request.POST['quantity']:
+			quantity = int(request.POST['quantity'])
+		else:
+			quantity = 1
+
+		if request.POST['fee']:
+			fee = int(request.POST['fee'])
+		else:
+			fee = 0
+
+		state = int(request.POST['state'])
+
+		if request.POST['videoAmt']:
+			videoAmt = int(request.POST['videoAmt'])
+		else:
+			videoAmt = 0
+
+		if request.POST['photoAmt']:
+			photoAmt = int(request.POST['photoAmt'])
+		else:
+			photoAmt = 0
+		# description = request.POST['description']
 
 		#deal with breed, if no match then put the breed value as 0
 
@@ -77,15 +99,21 @@ def search(request):
 					break
 
 		print ("_____________________")
-		print (petType,name,age,gender,color1,color2,color3,maturitySize,furLength,vaccinated,dewormed,sterilized,health,quantity,fee,state,videoAmt,photoAmt,description) 
+		print (petType,age,gender,color1,color2,color3,maturitySize,furLength,vaccinated,dewormed,sterilized,health,quantity,fee,state,videoAmt,photoAmt) 
 		print (breed1,breed2)
 		# message = "The prediction is ...."
 
 		#make prediction
 
 
-		#return prediction back to front end
+		if request.POST['selection'] == 'byImage':
+			message = 'predicted by image'
+		elif request.POST['selection'] == 'byValues':
+			message = 'predicted by values'
 
+
+
+		#return prediction back to front end
 		ctx['rlt'] = message
 		# ctx['rlt'] = request.POST['name']
 
