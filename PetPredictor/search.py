@@ -28,7 +28,7 @@ def search(request):
 		else:
 			print ('no image uploaded')
 
-
+		print ('hahahah')
 
 		#retrive attributes from front-end
 
