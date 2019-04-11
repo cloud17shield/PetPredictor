@@ -21,10 +21,10 @@ def search(request):
 			message = "upload successfully"
 			# 打开特定的文件进行二进制的写操作 
 			# use it if need to store image 
-			# destination = open(os.path.join("static",myFile.name),'wb+')    
-			# for chunk in myFile.chunks():     
-			# 	destination.write(chunk) 
-			# destination.close() 
+			destination = open(os.path.join("static",myFile.name),'wb+')    
+			for chunk in myFile.chunks():
+                            destination.write(chunk) 
+			destination.close() 
 		else:
 			message =  ('no image uploaded')
 
