@@ -5,6 +5,7 @@ from django.shortcuts import render
 import pandas as pd
 import numpy as np
 import os
+import random
 # 表单
 def search_form(request):
     return render(request, 'search_form.html')
@@ -20,11 +21,17 @@ def search(request):
 			print ('upload successfully')
 			message = "upload successfully"
 			# 打开特定的文件进行二进制的写操作 
-			# use it if need to store image 
-			destination = open(os.path.join("static",myFile.name),'wb+')    
+			# use it if need to store image
+                        rnd_file_name = ''.join(random.sample(string.ascii_letters + string.digits, 10)) + '.' + myFile.name.split('.')[1]
+                        print('random name', rnd_file_name)
+			destination = open(os.path.join("static", rnd_file_name),'wb+')    
+                        # copy the uploaded file to hdfs
 			for chunk in myFile.chunks():
                             destination.write(chunk) 
-			destination.close() 
+			destination.close()
+                        # copy the uploaded file to hdfs
+                        os.system('hdfs dfs -copyFromLocal /home/hduser/UI/PetPredictor/static/' + rnd_file_name + ' /images')
+
 		else:
 			message =  ('no image uploaded')
 
