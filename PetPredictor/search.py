@@ -49,6 +49,7 @@ def search(request):
             try:
                 # price = json.dumps(getQuotes(symbol))
                 # - instantiate a simple kafka producer
+                print("creating producer")
                 producer = KafkaProducer(
                     bootstrap_servers=kafka_broker
                 )
