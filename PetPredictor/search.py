@@ -7,6 +7,10 @@ import numpy as np
 import os
 import random
 import string
+from kafka import KafkaProducer
+from kafka.errors import KafkaError, KafkaTimeoutError
+import datetime
+import time
 
 
 # 表单
@@ -36,7 +40,27 @@ def search(request):
             destination.close()
             # copy the uploaded file to hdfs
             os.system('hdfs dfs -copyFromLocal /home/hduser/UI/PetPredictor/static/' + rnd_file_name + ' /images')
+            # - default kafka topic to write to
+            topic_name = 'fun'
 
+            # - default kafka broker location
+            kafka_broker = 'gpu17:9092'
+
+            try:
+                # price = json.dumps(getQuotes(symbol))
+                # - instantiate a simple kafka producer
+                producer = KafkaProducer(
+                    bootstrap_servers=kafka_broker
+                )
+                timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%dT%H:%MZ')
+                IMG_url = 'hdfs:///images/' + rnd_file_name
+                payload = ('[{"IMG_url":%s,"Produce_Time":"%s"}]' % (
+                IMG_url, timestamp)).encode('utf-8')
+                producer.send(topic=topic_name, value=payload, timestamp_ms=time.time())
+            except KafkaTimeoutError as timeout_error:
+                print("time out error!")
+            except Exception:
+                print("other kafka exception!")
         else:
             message = ('no image uploaded')
 
