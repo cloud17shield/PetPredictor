@@ -57,7 +57,7 @@ def search(request):
                 IMG_url = 'hdfs:///images/' + rnd_file_name
                 payload = ('[{"IMG_url":%s,"Produce_Time":"%s"}]' % (
                 IMG_url, timestamp)).encode('utf-8')
-                producer.send(topic=topic_name, value=payload, timestamp_ms=time.time())
+                producer.send(topic_name, payload)
             except KafkaTimeoutError as timeout_error:
                 print("time out error!")
             except Exception:
