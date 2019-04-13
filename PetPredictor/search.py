@@ -8,7 +8,7 @@ import os
 import random
 import string
 from kafka import KafkaProducer
-from kafka import kafkaConsumer
+from kafka import KafkaConsumer
 from kafka.errors import KafkaError, KafkaTimeoutError
 import datetime
 import time
@@ -65,7 +65,7 @@ def search(request):
             except Exception:
                 print("other kafka exception!")
 
-            consumer = kafkaConsumer(bootstrap_server=kafka_broker)
+            consumer = KafkaConsumer(bootstrap_server=kafka_broker)
             consumer.assign([TopicPartition(topic_name,0)])
 
             for msg in consumer:
