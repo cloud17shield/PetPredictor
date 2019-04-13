@@ -65,7 +65,7 @@ def search(request):
             except Exception:
                 print("other kafka exception!")
 
-            consumer = KafkaConsumer(bootstrap_server=kafka_broker)
+            consumer = KafkaConsumer(bootstrap_servers=kafka_broker)
             consumer.assign([TopicPartition(topic_name,0)])
 
             for msg in consumer:
