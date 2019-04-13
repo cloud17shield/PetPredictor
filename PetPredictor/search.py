@@ -8,9 +8,11 @@ import os
 import random
 import string
 from kafka import KafkaProducer
+from kafka import kafkaConsumer
 from kafka.errors import KafkaError, KafkaTimeoutError
 import datetime
 import time
+from kafka import TopicPartition
 
 
 # 表单
@@ -57,15 +59,23 @@ def search(request):
                 IMG_url = 'hdfs:///images/' + rnd_file_name
                 payload = ('[{"IMG_url":%s,"Produce_Time":"%s"}]' % (
                 IMG_url, timestamp)).encode('utf-8')
-                producer.send(topic_name, payload)
+                producer.send(topic_name, key=rnd_file_name.encode('utf-8'), value=payload)
             except KafkaTimeoutError as timeout_error:
                 print("time out error!")
             except Exception:
                 print("other kafka exception!")
+
+            consumer = kafkaConsumer(bootstrap_server=kafka_broker)
+            consumer.assign([TopicPartition(topic_name,0)])
+
+            for msg in consumer:
+                print (msg)
+                if msg.key == rnd_file_name.encode('utf-8'):
+                    print (msg.value)
+                    break
+
         else:
             message = ('no image uploaded')
-
-        print('hahahah')
 
         # retrive attributes from front-end
 
