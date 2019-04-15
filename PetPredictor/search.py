@@ -52,9 +52,10 @@ def search(request):
                 IMG_url = 'hdfs:///images/' + rnd_file_name
                 payload = ('[{"IMG_url":%s,"Produce_Time":"%s"}]' % (
                 IMG_url, timestamp)).encode('utf-8')
-                producer.send(input_topic_name, key=rnd_file_name.encode('utf-8'), value=payload)
+                producer.send(input_topic_name, key=rnd_file_name.encode('utf-8'), value=IMG_url.encode('utf-8'))
                 
                 print (rnd_file_name.encode('utf-8'))
+                print (IMG_url.encode('utf-8'))
 
                 consumer = KafkaConsumer(bootstrap_servers=kafka_broker)
                 consumer.assign([TopicPartition(output_topic_name,0)])
@@ -71,7 +72,8 @@ def search(request):
                     print (msg.value)
                     break
 
-            prediction = 'The prediction is' + str(msg.value)
+            value_clean = str(msg.value)[2:-1]
+            prediction = 'The prediction is ' + str(value_clean)
             return HttpResponse(prediction)
 
         elif request.POST['selection'] == 'byValues': 
@@ -168,7 +170,9 @@ def search(request):
                     print (msg.value)
                     break
 
-            prediction = 'The prediction is' + str(msg.value)
+            value_clean = str(msg.value)[2:-1]
+
+            prediction = 'The prediction is ' + str(value_clean)
             return HttpResponse(prediction)
 
 
