@@ -137,7 +137,7 @@ def search(request):
                         breed2 = int(row['BreedID'])
                         break
 
-            rnd_key = random.sample(string.ascii_letters + string.digits, 10)
+            rnd_key = ''.join(random.sample(string.ascii_letters + string.digits, 10))
             # - default kafka topic to write to
             input_topic_name = 'input'
             output_topic_name = 'output'
