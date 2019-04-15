@@ -5,7 +5,7 @@
 <title>Pet Adoption Predictor</title>
 </head>
 <body>
-    <form enctype="multipart/form-data" action="/search" method="post">
+    <form  style="width:100%;text-align:center" enctype="multipart/form-data" action="/search" method="post">
         {% csrf_token %}
         
         <label><input name="selection" type="radio" value="byImage" />predicted by image </label> 
@@ -23,9 +23,6 @@
         <option value="2">Cat</option> 
         </select> <br><br>
 
-<!--        	<label>Name</label> <br>
-        <input type="text" name="name"> <br><br>
- -->
         <label>Age</label> <br>
         <input type="text" name="age"> <br><br>
 
@@ -153,9 +150,6 @@
 
         <label>Photo Amount</label> <br>
         <input type="text" name="photoAmt"> <br><br>
-
-<!--         <label>Description</label> <br>
-        <input type="text" name="description"> <br><br> -->
 
         <input type="submit" value="Make A prediction"> <br><br>
 
