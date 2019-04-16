@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!--     <link rel="stylesheet" href="../static/css/materialize.css" />
-    <link rel="stylesheet" href="../static/css/materialize.min.css" />
- -->
     <script type="text/javascript" src="../static/javascript/medicine.js"></script>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -30,9 +27,10 @@
     <div class="section">
         <div class="row">
             <form style="width:100%;text-align:center" enctype="multipart/form-data" action="/search" method="post">
-            {% csrf_token %}
+                {% csrf_token %}
 
-                <label><input name="selection" type="radio" value="byImage" checked/><span>predicted by image </span></label>
+                <label><input name="selection" type="radio" value="byImage"
+                              checked/><span>predicted by image </span></label>
                 <span> &nbsp; </span>
                 <label><input name="selection" type="radio" value="byValues"/><span>predicted by values</span></label>
 
@@ -95,11 +93,11 @@
 
 
                 <label>Gender</label> <br>
-                    <select name="gender" class="browser-default">
-                        <option value="1">Male</option>
-                        <option value="2">Femele</option>
-                        <option value="3">Mixed</option>
-                    </select><br>
+                <select name="gender" class="browser-default">
+                    <option value="1">Male</option>
+                    <option value="2">Femele</option>
+                    <option value="3">Mixed</option>
+                </select><br>
 
                 <label>The major color of your pet</label> <br>
                 <select name="color1" class="browser-default">
@@ -223,9 +221,8 @@
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer
-                    content.</p>
+                <h5 class="white-text">Thanks for you visit</h5>
+                <p class="grey-text text-lighten-4">Pet Adoption Speed Prediction Based on Image and Text.</p>
             </div>
             <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Links</h5>
@@ -238,7 +235,7 @@
     </div>
     <div class="footer-copyright">
         <div class="container">
-            © 2019 Copyright Text
+            © 2019 Copyright Comp7305 Cluster and Cloud Computing Group 17
             <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
         </div>
     </div>
