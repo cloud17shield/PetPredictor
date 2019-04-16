@@ -55,7 +55,7 @@ def search(request):
                 payload = ('[{"IMG_url":%s,"Produce_Time":"%s"}]' % (
                     IMG_url, timestamp)).encode('utf-8')
                 producer.send(input_topic_name, key=rnd_file_name.encode('utf-8'), value=IMG_url.encode('utf-8'))
-
+                producer.flush()
                 print(rnd_file_name.encode('utf-8'))
                 print(IMG_url.encode('utf-8'))
 
@@ -157,7 +157,7 @@ def search(request):
                 print("creating producer")
                 producer = KafkaProducer(bootstrap_servers=kafka_broker)
                 producer.send(input_topic_name, key=rnd_key.encode('utf-8'), value=payload.encode('utf-8'))
-
+                producer.flush()
                 print(rnd_key.encode('utf-8'), payload.encode('utf-8'))
 
             except KafkaTimeoutError as timeout_error:
