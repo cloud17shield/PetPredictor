@@ -38,7 +38,7 @@ def search(request):
                 destination.write(chunk)
             destination.close()
             os.system('hdfs dfs -copyFromLocal /home/hduser/UI/PetPredictor/static/' + rnd_file_name + ' /images')
-            
+
             # - default kafka topic to write to
             input_topic_name = 'input'
             output_topic_name = 'output'
@@ -46,37 +46,36 @@ def search(request):
             kafka_broker = 'gpu17:9092'
 
             try:
+                consumer = KafkaConsumer(bootstrap_servers=kafka_broker)
+                consumer.assign([TopicPartition(output_topic_name, 0)])
                 print("creating producer")
                 producer = KafkaProducer(bootstrap_servers=kafka_broker)
                 timestamp = datetime.datetime.fromtimestamp(time.time()).strftime('%Y-%m-%dT%H:%MZ')
                 IMG_url = 'hdfs:///images/' + rnd_file_name
                 payload = ('[{"IMG_url":%s,"Produce_Time":"%s"}]' % (
-                IMG_url, timestamp)).encode('utf-8')
+                    IMG_url, timestamp)).encode('utf-8')
                 producer.send(input_topic_name, key=rnd_file_name.encode('utf-8'), value=IMG_url.encode('utf-8'))
-                
-                print (rnd_file_name.encode('utf-8'))
-                print (IMG_url.encode('utf-8'))
 
-                consumer = KafkaConsumer(bootstrap_servers=kafka_broker)
-                consumer.assign([TopicPartition(output_topic_name,0)])
-            
+                print(rnd_file_name.encode('utf-8'))
+                print(IMG_url.encode('utf-8'))
+
+
             except KafkaTimeoutError as timeout_error:
                 print("time out error!")
             except Exception:
                 print("other kafka exception!")
 
-
             for msg in consumer:
-                print (msg)
+                print(msg)
                 if msg.key == rnd_file_name.encode('utf-8'):
-                    print (msg.value)
+                    print(msg.value)
                     break
 
             value_clean = str(msg.value)[2:-1]
             prediction = 'The prediction is ' + str(value_clean)
             return HttpResponse(prediction)
 
-        elif request.POST['selection'] == 'byValues': 
+        elif request.POST['selection'] == 'byValues':
             petType = request.POST['petType']
 
             if request.POST['age']:
@@ -145,29 +144,31 @@ def search(request):
             output_topic_name = 'output'
             # - default kafka broker location
             kafka_broker = 'gpu17:9092'
-            
-            payload = str(petType)+','+str(age)+','+str(breed1)+','+str(breed2)+','+str(gender)+','+str(color1)+','+str(color2)+','+str(color3)+','+str(maturitySize)+','+str(furLength)+','+str(vaccinated)+','+str(dewormed)+','+str(sterilized)+','+str(health)+','+str(quantity)+','+str(fee)+','+str(videoAmt)+','+str(photoAmt)
+
+            payload = str(petType) + ',' + str(age) + ',' + str(breed1) + ',' + str(breed2) + ',' + str(
+                gender) + ',' + str(color1) + ',' + str(color2) + ',' + str(color3) + ',' + str(
+                maturitySize) + ',' + str(furLength) + ',' + str(vaccinated) + ',' + str(dewormed) + ',' + str(
+                sterilized) + ',' + str(health) + ',' + str(quantity) + ',' + str(fee) + ',' + str(
+                videoAmt) + ',' + str(photoAmt)
 
             try:
+                consumer = KafkaConsumer(bootstrap_servers=kafka_broker)
+                consumer.assign([TopicPartition(output_topic_name, 0)])
                 print("creating producer")
                 producer = KafkaProducer(bootstrap_servers=kafka_broker)
                 producer.send(input_topic_name, key=rnd_key.encode('utf-8'), value=payload.encode('utf-8'))
 
-                print (rnd_key.encode('utf-8'))
+                print(rnd_key.encode('utf-8'))
 
-                consumer = KafkaConsumer(bootstrap_servers=kafka_broker)
-                consumer.assign([TopicPartition(output_topic_name,0)])
-            
             except KafkaTimeoutError as timeout_error:
                 print("time out error!")
             except Exception:
                 print("other kafka exception!")
 
-
             for msg in consumer:
-                print (msg)
+                print(msg)
                 if msg.key == rnd_key.encode('utf-8'):
-                    print (msg.value)
+                    print(msg.value)
                     break
 
             value_clean = str(msg.value)[2:-1]
@@ -175,9 +176,9 @@ def search(request):
             prediction = 'The prediction is ' + str(value_clean)
             return HttpResponse(prediction)
 
-
             print("_____________________")
-            print(petType, age, gender, color1, color2, color3, maturitySize, furLength, vaccinated, dewormed, sterilized,
+            print(petType, age, gender, color1, color2, color3, maturitySize, furLength, vaccinated, dewormed,
+                  sterilized,
                   health, quantity, fee, state, videoAmt, photoAmt)
             print(breed1, breed2)
             print("_____________________")
