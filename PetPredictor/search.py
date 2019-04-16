@@ -158,7 +158,7 @@ def search(request):
                 producer = KafkaProducer(bootstrap_servers=kafka_broker)
                 producer.send(input_topic_name, key=rnd_key.encode('utf-8'), value=payload.encode('utf-8'))
 
-                print(rnd_key.encode('utf-8'))
+                print(rnd_key.encode('utf-8'), payload.encode('utf-8'))
 
             except KafkaTimeoutError as timeout_error:
                 print("time out error!")
