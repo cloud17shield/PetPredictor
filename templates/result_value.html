@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="../static/javascript/medicine.js"></script>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <meta charset="utf-8">
+    <title>Pet Adoption Predictor</title>
+</head>
+<body>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<nav>
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">How cute is your kitty/doggy?</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="#">Adoption predict ™️</a></li>
+
+        </ul>
+    </div>
+</nav>
+<br>
+
+<div class="container">
+    <div class="section">
+        <div class="row">
+        <blockquote> {{cute_description}} <br> {{prediction}} <br></blockquote>
+
+        <table>
+        <thead>
+          <tr>
+              <th>age</th>
+              <th>breed1</th>
+              <th>breed2</th>
+              <th>quantity</th>
+              <th>fee</th>
+              <th>video Amount</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{age}}</td>
+            <td>{{breed1}}</td>
+            <td>{{breed2}}</td>
+            <td>{{quantity}}</td>
+            <td>{{fee}}</td>
+            <td>{{videoAmt}}</td>
+
+          </tr>
+        </tbody>
+
+        <thead>
+          <tr>
+              <th>Photo Amount</th>
+              <th>gender</th>
+              <th>color1</th>
+              <th>color2</th>
+              <th>color3</th>
+              <th>maturitySize</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{photoAmt}}</td>
+            <td>{{gender}}</td>
+            <td>{{color1}}</td>
+            <td>{{color2}}</td>
+            <td>{{color3}}</td>
+            <td>{{maturitySize}}</td>
+          </tr>
+        </tbody>
+
+        <thead>
+          <tr>
+              <th>furLength</th>
+              <th>vaccinated</th>
+              <th>dewormed</th>
+              <th>sterilized</th>
+              <th>health</th>
+              <th>state location</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{furLength}}</td>
+            <td>{{vaccinated}}</td>
+            <td>{{dewormed}}</td>
+            <td>{{sterilized}}</td>
+            <td>{{health}}</td>
+            <td>{{state}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+        </div>
+    </div>
+</div>
+
+</body>
+
+
+<footer class="page-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Thanks for you visit</h5>
+                <p class="grey-text text-lighten-4">Pet Adoption Speed Prediction Based on Image and Text.</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2019 Copyright Comp7305 Cluster and Cloud Computing Group 17
+        </div>
+    </div>
+</footer>
+<!--  Scripts-->
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+</html>
