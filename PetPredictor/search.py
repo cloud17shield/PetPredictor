@@ -40,7 +40,7 @@ def search(request):
             os.system('hdfs dfs -copyFromLocal /home/hduser/UI/PetPredictor/static/' + rnd_file_name + ' /images')
 
             # - default kafka topic to write to
-            input_topic_name = 'input'
+            input_topic_name = 'input1'
             output_topic_name = 'output'
             # - default kafka broker location
             kafka_broker = 'gpu17:9092'
@@ -309,7 +309,7 @@ def search(request):
 
             rnd_key = ''.join(random.sample(string.ascii_letters + string.digits, 10))
             # - default kafka topic to write to
-            input_topic_name = 'input'
+            input_topic_name = 'input1'
             output_topic_name = 'output'
             # - default kafka broker location
             kafka_broker = 'gpu17:9092'
