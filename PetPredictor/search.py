@@ -42,7 +42,7 @@ def search(request):
             input_topic_name = 'input'
             output_topic_name = 'output'
             # - default kafka broker location
-            kafka_broker = 'student49:9092'
+            kafka_broker = 'student50:9092'
 
             try:
                 consumer = KafkaConsumer(bootstrap_servers=kafka_broker)
@@ -72,31 +72,22 @@ def search(request):
 
             value_clean = str(msg.value)[2:-1]
 
-            if value_clean == '0.0':
-                cute_description = 'Cute Rate : ★★★★★'
-                prediction = ' The prediction is 0 - Pet will be adopted on the same day as it was listed.'
-            elif value_clean == '1.0':
-                cute_description = 'Cute Rate : ★★★★'
-                prediction = ' The prediction is 1 - Pet will be adopted between 1 and 7 days (1st week) after being listed.'
-            elif value_clean == '2.0':
-                cute_description = 'Cute Rate : ★★★'
-                prediction = ' The prediction is 2 - Pet will be adopted between 8 and 30 days (1st month) after being listed.'
-            elif value_clean == '3.0':
-                cute_description = 'Cute Rate : ★★'
-                prediction = ' The prediction is 3 - Pet will be adopted between 31 and 90 days (2nd & 3rd month) after being listed.'
-            elif value_clean == '4.0':
-                cute_description = 'Cute Rate : ★'
-                prediction = ' The prediction is 4 - No adoption after 100 days of being listed.'
+            if value_clean == '0':
+                drunk_description = 'no drunk'
+                prediction = ' no drunk '
+            elif value_clean == '1':
+                drunk_description = 'drunk'
+                prediction = ' drunk '
 
             location = 'static/' + rnd_file_name
             print(location)
 
             return render(request, 'result_image.html',
-                          {"cute_description": cute_description, "prediction": prediction, "location": location})
+                          {"drunk_description": drunk_description, "prediction": prediction, "location": location})
 
-        elif request.POST['selection'] == 'byValues':
+        elif request.POST['selection'] == 'byVideo':
+
             return None
-
 
 
 def main_page(request):
