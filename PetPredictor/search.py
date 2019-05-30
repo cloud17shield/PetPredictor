@@ -31,7 +31,7 @@ def search(request):
             # use it if need to store image
             rnd_file_name = ''.join(random.sample(string.ascii_letters + string.digits, 10)) + '.' + \
                             myFile.name.split('.')[1]
-            destination = open(os.path.join("static", rnd_file_name), 'wb+')
+            destination = open(os.path.join("/home/hduser/UI/PetPredictor/static/", rnd_file_name), 'wb+')
             # copy the uploaded file to hdfs
             for chunk in myFile.chunks():
                 destination.write(chunk)
