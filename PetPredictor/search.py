@@ -42,7 +42,7 @@ def search(request):
             input_topic_name = 'input'
             output_topic_name = 'output'
             # - default kafka broker location
-            kafka_broker = 'student50:9092'
+            kafka_broker = 'g01-01:9092'
 
             try:
                 consumer = KafkaConsumer(bootstrap_servers=kafka_broker)
