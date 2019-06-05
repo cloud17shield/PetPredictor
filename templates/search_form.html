@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script type="text/javascript" src="../static/javascript/medicine.js"></script>
+    <link rel="shortcut icon" type="image/png" href="{{STATIC_URL}}/favicon.ico"/>
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Compiled and minified CSS -->
@@ -30,9 +30,10 @@
                 {% csrf_token %}
 
                 <label><input name="selection" type="radio" value="byImage"
-                              checked/><span>predicted by image </span></label>
+                              checked/><span>predicted by image (Drunk) </span></label>
                 <span> &nbsp; </span>
-                <label><input name="selection" type="radio" value="byVideo"/><span>predicted by values</span></label>
+                <label><input name="selection" type="radio"
+                              value="byVideo"/><span>predicted by video (YOLO)</span></label>
 
                 <br><br>
 
