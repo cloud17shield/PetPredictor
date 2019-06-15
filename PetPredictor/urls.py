@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from . import search
+from . import socket_redi
  
 urlpatterns = [
 
     url(r'^search-form$', search.search_form),
     url(r'^search$', search.search),
+    url(r'^socket$', socket_redi.out),
 ]
