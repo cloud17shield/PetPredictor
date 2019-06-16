@@ -68,8 +68,7 @@ def search(request):
 
             for msg in consumer:
                 image1 = Image.frombytes('RGB', (300,400), msg.value, 'raw')
-                rnd_file_name = ''.join(random.sample(string.ascii_letters + string.digits, 10)) + '.' + \
-                                msg.value.split('.')[1]
+                rnd_file_name = ''.join(random.sample(string.ascii_letters + string.digits, 10))
                 print(msg)
                 #if msg.key == rnd_file_name.encode('utf-8'):
                 #    print(msg.value)
